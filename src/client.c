@@ -6,7 +6,7 @@
 /*   By: amedioun <amedioun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:51:20 by amedioun          #+#    #+#             */
-/*   Updated: 2023/05/16 12:15:38 by amedioun         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:30:06 by amedioun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,16 @@ void	ft_atob(int pid, char c)
 	while (bit < 8)
 	{
 		if (c & mask)
+		{
 			kill(pid, SIGUSR1);
+printf("Sending signal: %d\n", (c & mask) ? SIGUSR1 : SIGUSR2);
+		}
 		else
+		{
 			kill(pid, SIGUSR2);
-		usleep(100);
+printf("Sending signal: %d\n", (c & mask) ? SIGUSR1 : SIGUSR2);
+		}
+		usleep(500);
 		mask >>= 1;
 		bit++;
 	}
@@ -66,6 +72,7 @@ int	main(int ac, char **av)
 	if (ac == 3)
 	{
 		pid = ft_atoi(av[1]);
+		ft_printf("PID actuel: %s\n", av[1]);
 		while (av[2][i] != '\0')
 		{
 			ft_atob(pid, av[2][i]);
