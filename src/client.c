@@ -6,7 +6,7 @@
 /*   By: amedioun <amedioun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:51:20 by amedioun          #+#    #+#             */
-/*   Updated: 2023/05/17 16:30:06 by amedioun         ###   ########.fr       */
+/*   Updated: 2023/05/18 10:05:09 by amedioun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	ft_atob(int pid, char c)
 		if (c & mask)
 		{
 			kill(pid, SIGUSR1);
-printf("Sending signal: %d\n", (c & mask) ? SIGUSR1 : SIGUSR2);
+printf("Sending signal: SIGUSR1 [1]\n");
 		}
 		else
 		{
 			kill(pid, SIGUSR2);
-printf("Sending signal: %d\n", (c & mask) ? SIGUSR1 : SIGUSR2);
+printf("Sending signal: SIGUSR2 [0]\n");
 		}
 		usleep(500);
 		mask >>= 1;

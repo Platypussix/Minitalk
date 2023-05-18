@@ -6,7 +6,7 @@
 /*   By: amedioun <amedioun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:08:08 by amedioun          #+#    #+#             */
-/*   Updated: 2023/05/17 16:30:07 by amedioun         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:09:15 by amedioun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void	translater(int sig)
 {
 	static unsigned char	byte;
 	static int				bitcount;
+
+
 	byte = 0;
 	bitcount = 0;
 	byte <<= 1;//Decale les bits de byte vers la gauche
 	if (sig == SIGUSR1)
 		byte |= 0x01;//Bit a 1 en hexa
-	else
+	else if (sig == SIGUSR2)
 		byte |= 0x00;//Bit a 0 en hexa
 	if (++bitcount == 8)
 	{
@@ -32,7 +34,8 @@ printf("Byte received: %c\n", byte);
 	}
 else
 {
-printf("Bit received: %d\n", (sig == SIGUSR1) ? 1 : 0);
+printf("Bit received: [%d]\n", (sig == SIGUSR1) ? 1 : 0);
+printf("bitcount value : %d\n", bitcount);
 }
 }
 
