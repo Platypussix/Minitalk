@@ -6,7 +6,7 @@
 #    By: amedioun <amedioun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 12:11:08 by amedioun          #+#    #+#              #
-#    Updated: 2023/05/15 13:50:12 by amedioun         ###   ########.fr        #
+#    Updated: 2023/05/20 14:40:40 by amedioun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,10 @@ HEADER = minitalk.h
 CLIENT_EXEC = client
 SERVER_EXEC = server
 
-all: $(CLIENT_EXEC) $(SERVER_EXEC)
+all: obj $(CLIENT_EXEC) $(SERVER_EXEC)
 
-$(shell mkdir -p $(OBJ_DIR))
+obj:
+	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/client.o: $(CLIENT_SRC) $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -51,6 +52,6 @@ clean:
 fclean: clean
 	rm -f $(CLIENT_EXEC) $(SERVER_EXEC)
 
-re: fclean all
+re: fclean obj all
 
 .PHONY: all clean fclean re
